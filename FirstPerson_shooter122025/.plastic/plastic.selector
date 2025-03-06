@@ -1,0 +1,4 @@
+repository "FirstPerson_shooter122025/FirstPerson_shooter122025@1375777187037@cloud"
+  path "/"
+    br "/main"
+    co "/main"
