@@ -1,8 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Build.Content;
+//using System.Collections;
+//using System.Collections.Generic;
+//using UnityEditor.Build.Content;
 using UnityEngine;
-using UnityEngine.InputSystem;
+//using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 
@@ -22,6 +22,9 @@ public float fuelDrainRate = 1f; // Fuel drain rate per second while moving
 
     public HealthBar healthBar;//
 
+    public GameOverScreen gameOverScreen;
+
+
     public bool gameManager; //
 
     // Start is called before the first frame update
@@ -39,6 +42,11 @@ public float fuelDrainRate = 1f; // Fuel drain rate per second while moving
         currentHealth -= damage;
         healthBar.SetHealth(currentHealth);//
         Debug.Log($"Health: {currentHealth}");
+        // Check if health is zero and trigger game over
+        if (currentHealth <= 0)
+        {
+            TriggerGameOver();
+        }
 
     }
 
@@ -53,10 +61,6 @@ public float fuelDrainRate = 1f; // Fuel drain rate per second while moving
     void Update()
     {
 
-        if (currentHealth<0)
-        {
-            //gameManager.gameOver();
-        }
                 // Decrease fuel when player is moving (this logic can go in FPSInput too if you prefer)
         // (Input.GetKeyDown(KeyCode.W)||Input.GetKeyDown(KeyCode.S)||Input.GetKeyDown(KeyCode.A)||Input.GetKeyDown(KeyCode.D))
         //canMove &&
@@ -70,7 +74,15 @@ public float fuelDrainRate = 1f; // Fuel drain rate per second while moving
         {
             StopMovement();  // Stop player movement when fuel is out
         }
-        
+
+        // Check if health or fuel reaches zero, and trigger game over if either is true
+        if (currentHealth <= 0 || currentFuel <= 0)
+        {
+            gameOverScreen.ShowGameOverScreen();
+            //GameOverScreen.Setup(currentHealth);
+            //gameManager.gameOver();
+        }
+
     }
 // Method to decrease fuel
 
@@ -124,6 +136,16 @@ public void IncreaseHealth(int amount)
         StopMovement();  // Stop player movement when fuel is out
     }
 }
+    private void TriggerGameOver()
+    {
+        // Freeze the game by setting time scale to 0 (this stops all updates, physics, animations, etc.)
+        Time.timeScale = 0f;
+        gameOverScreen.ShowGameOverScreen();  // Show the Game Over screen
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+    
+
 
     // Method to refill fuel (can be called from other scripts if needed)
     public void RefillFuel(int amount)

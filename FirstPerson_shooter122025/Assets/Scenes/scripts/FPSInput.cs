@@ -52,7 +52,7 @@ public class FPSInput : MonoBehaviour
 
 
 
-            if (canMove)  // Only allow movement if fuel is not depleted
+        if (canMove)  // Only allow movement if fuel is not depleted
         {
             Sprint();
             // Get horizontal and vertical movement from player's keyboard input

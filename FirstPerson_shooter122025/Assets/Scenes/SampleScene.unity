@@ -252,7 +252,7 @@ GameObject:
   - component: {fileID: 8442268}
   - component: {fileID: 8442267}
   m_Layer: 5
-  m_Name: GameOverScreen
+  m_Name: gameOverScreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2256,7 +2256,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 5635106944451874122, guid: 2b33d309c796b4407a63b7a7307daea2, type: 3}
-  h_packPrefab: {fileID: 4436410625894646238, guid: ddee3c6efbc46480d81475913c718fd6, type: 3}
+  h_packPrefab: {fileID: 2624391189014297077, guid: ddee3c6efbc46480d81475913c718fd6, type: 3}
 --- !u!4 &410854909
 Transform:
   m_ObjectHideFlags: 0
@@ -3086,7 +3086,7 @@ GameObject:
   - component: {fileID: 652344409}
   - component: {fileID: 652344408}
   m_Layer: 5
-  m_Name: RestartButton
+  m_Name: restartButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3830,6 +3830,7 @@ GameObject:
   - component: {fileID: 841098723}
   - component: {fileID: 841098724}
   - component: {fileID: 841098725}
+  - component: {fileID: 841098726}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -3997,7 +3998,23 @@ MonoBehaviour:
   canMove: 1
   fuelBar: {fileID: 1223887703}
   healthBar: {fileID: 670127783}
-  gameManager: 0
+  gameOverScreen: {fileID: 841098726}
+  gameManager: 1
+--- !u!114 &841098726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 841098716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81e46bc56c7a5451989f39ac2c67cd66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameOverUI: {fileID: 8442265}
+  restartButton: {fileID: 652344408}
+  exitButton: {fileID: 925201405}
 --- !u!1 &894965330
 GameObject:
   m_ObjectHideFlags: 0
@@ -4580,7 +4597,7 @@ GameObject:
   - component: {fileID: 925201406}
   - component: {fileID: 925201405}
   m_Layer: 5
-  m_Name: 'QuitButton '
+  m_Name: 'exitButton '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5814,7 +5831,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: QUIT
+  m_text: EXIT
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
