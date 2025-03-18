@@ -1,13 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;  // For loading scenes
 using UnityEngine;
 using UnityEngine.EventSystems;
+
 
 public class RayShooter : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     // Private field; stores a reference to the camera
     private Camera cam;
+    
+    public bool Muzzle = false;  // Crosshair visibility
+
+//Brandon Lopez for sound
+    [SerializeField] AudioSource soundSource;
+    [SerializeField] AudioClip hitWallSound;
+    [SerializeField] AudioClip  hitEnemySound;
+//--------
+
 
     // Start is called before the first frame update
     void Start()
@@ -16,7 +27,18 @@ public class RayShooter : MonoBehaviour
 
         // Hide the cursor
         Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        Cursor.visible = false;   
+
+        
+        // Check the scene name to determine if we should show the crosshair
+        if (SceneManager.GetActiveScene().name == "SampleScene")  // Replace "SampleScene" with your actual game scene name
+        {
+            Muzzle = true;  // Show crosshair in the game scene
+        }
+        else
+        {
+            Muzzle = false; // Hide crosshair in the main menu or any other scene
+        } 
         
     }
 
@@ -24,10 +46,13 @@ public class RayShooter : MonoBehaviour
 
     private void OnGUI() 
     {
+        //check
+        if(SceneManager.GetActiveScene().name == "SampleScene" && Muzzle){
         int size = 29;
         float posx = cam.pixelWidth / 2 - size / 4;
         float posy = cam.pixelHeight / 2 - size / 2;
         GUI.Label( new Rect(posx, posy, size, size),"+");
+        }
 
         //if (GUI. Button(new Rect(10,10,180,20), "Click here fore a free iPod!"))
         //{
@@ -74,12 +99,15 @@ private IEnumerator SphereIndicator(Vector3 pos) {
                 if (target != null) 
                 {
                     target.ReactToHit();
+                    soundSource.PlayOneShot(hitEnemySound);
+
                    // if (target.deathAnim == null)Messenger. Broadcast(GameEvent.ENEMY_HIT);
                     Debug. Log("Target hit!");
                 } 
                 else
                 {
                     StartCoroutine (SphereIndicator(hit.point));
+                    soundSource.PlayOneShot(hitWallSound);//Brandon
                 }
             }
         }

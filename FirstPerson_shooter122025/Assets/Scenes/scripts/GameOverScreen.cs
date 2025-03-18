@@ -18,6 +18,8 @@ public class GameOverScreen : MonoBehaviour
 
 
     public Button exitButton;
+
+    public Button mainMenuButton;  // Button to go back to the main menu
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -28,7 +30,7 @@ public class GameOverScreen : MonoBehaviour
         // Set up button listeners
         restartButton.onClick.AddListener(RestartGame);
         exitButton.onClick.AddListener(ExitGame);
-
+        mainMenuButton.onClick.AddListener(GoToMainMenu);
     }
 
     public void ShowGameOverScreen()
@@ -50,9 +52,19 @@ public class GameOverScreen : MonoBehaviour
     {
         // Quit the game (only works in a built game)
         Application.Quit();
+
+                // In the editor, it will stop playing the scene
+        #if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+        #endif
     }
 
     // Update is called once per frame
+
+    void GoToMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
     void Update()
     {
     }
