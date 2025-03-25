@@ -9,11 +9,12 @@ Group Members:
 4.	Giovany Martienz-Gutierrez
 5.	Jerrod Robinson
 6.	Josh Flores
+
 Contributions:
 1.	Map - David
 2.	Boss - Alex
 3.	Screens - Josh
-4.	Music - Brandon
+4.	Music/sounds - Brandon
 5.	Enemies – Giovanny
 6.	Presentation – Jerrod
 Assets: Unity asset store
