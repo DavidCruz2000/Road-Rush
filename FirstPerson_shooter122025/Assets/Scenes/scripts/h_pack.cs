@@ -7,7 +7,7 @@ using System.Collections.Generic;
 public class h_pack : MonoBehaviour
 {
 
-    public int healthAmount = 5; // Amount of health the health pack restores
+    public int healthAmount = 2; // Amount of health the health pack restores
     public GameObject player;     // Reference to the player (optional if using tags)
 
 

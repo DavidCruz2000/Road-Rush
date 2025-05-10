@@ -33,6 +33,8 @@ public class FPSInput : MonoBehaviour
     private void OnDisable() {
         Messenger<float>. RemoveListener (GameEvent.SPEED_CHANGED, OnSpeedChanged) ;
         }
+
+        
     private void OnSpeedChanged (float value) { 
         Normal_speed =_baseSpeed * value;
         }
@@ -52,7 +54,7 @@ public class FPSInput : MonoBehaviour
 
 
 
-            if (canMove)  // Only allow movement if fuel is not depleted
+        if (canMove)  // Only allow movement if fuel is not depleted
         {
             Sprint();
             // Get horizontal and vertical movement from player's keyboard input
@@ -81,7 +83,8 @@ public class FPSInput : MonoBehaviour
              // Decrease fuel when player is moving
             if (movement.magnitude > 0)
             {
-                playerCharacter.DecreaseFuel(playerCharacter.fuelDrainRate * Time.deltaTime); // Adjust the fuel consumption rate here
+                //change back // to stop gas form moving
+                //playerCharacter.DecreaseFuel(playerCharacter.fuelDrainRate * Time.deltaTime); // Adjust the fuel consumption rate here
             }
 
         }
